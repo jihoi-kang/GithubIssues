@@ -21,7 +21,7 @@ buildscript {
         hiltVersion = '2.30.1-alpha'
         hiltViewModelVersion = '1.0.0-alpha02'
         gsonVersion = '2.8.6'
-        googleMapVersion = '17.0.0'
+        roomVersion = '2.2.5'
 
         junitVersion = '4.13.1'
         junitExtVersion = '1.1.2'

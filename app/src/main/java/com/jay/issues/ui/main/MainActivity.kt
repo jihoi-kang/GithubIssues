@@ -9,6 +9,7 @@ import com.jay.issues.Const
 import com.jay.issues.R
 import com.jay.issues.base.BaseActivity
 import com.jay.issues.databinding.ActivityMainBinding
+import com.jay.issues.ui.detail.IssueDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -69,8 +70,8 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(
                     dialog.dismiss()
                 }.show()
         }
-        viewModel.openIssueDetailEvent.observe(this) {
-
+        viewModel.openIssueDetailEvent.observe(this) { id ->
+            startActivity(IssueDetailActivity.getIntent(this@MainActivity, id))
         }
         viewModel.openWebEvent.observe(this) { url ->
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))

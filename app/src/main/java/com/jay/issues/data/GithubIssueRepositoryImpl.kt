@@ -15,12 +15,16 @@ class GithubIssueRepositoryImpl @Inject constructor(
 
     override suspend fun getGithubIssues(org: String, repo: String): List<GithubIssue> {
         val items = githubIssueRemoteDataSource.getGithubIssues(org, repo)
+        githubIssueLocalDataSource.setGithubIssues(items)
         githubIssueLocalDataSource.setLatestRepo(repo)
         return items
     }
 
     override suspend fun getLatestRepo(): String? =
         githubIssueLocalDataSource.getLatestRepo()
+
+    override suspend fun getGithubIssue(id: Int): GithubIssue =
+        githubIssueLocalDataSource.getGithubIssue(id)
 
 }
 

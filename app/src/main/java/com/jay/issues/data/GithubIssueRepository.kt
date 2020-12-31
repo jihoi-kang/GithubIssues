@@ -8,4 +8,6 @@ interface GithubIssueRepository {
 
     suspend fun getLatestRepo(): String?
 
+    suspend fun getGithubIssue(id: Int): GithubIssue
+
 }
