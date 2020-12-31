@@ -22,10 +22,13 @@ class MainViewModel @ViewModelInject constructor(
         get() = _repo.switchMap { repo ->
             liveData {
                 try {
+                    showLoading()
                     val items = githubIssueRepository.getGithubIssues(Const.DEFAULT_ORG, repo)
                     cachedRepo = repo
+                    hideLoading()
                     emit(items)
                 } catch (e: HttpException) {
+                    hideLoading()
                     e.printStackTrace()
                     _errorPopupEvent.value = e.code()
                     _repo.value = cachedRepo
