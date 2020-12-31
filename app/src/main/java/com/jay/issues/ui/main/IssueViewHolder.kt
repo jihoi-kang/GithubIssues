@@ -9,8 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jay.issues.BR
 
 class IssueViewHolder(
+    private val viewModel: MainViewModel,
     @LayoutRes layoutResId: Int,
-    parent: ViewGroup?
+    parent: ViewGroup?,
 ) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent?.context)
         .inflate(layoutResId, parent, false)
@@ -21,6 +22,7 @@ class IssueViewHolder(
     fun bind(item: Any) {
         binding.run {
             setVariable(BR.item, item)
+            setVariable(BR.viewModel, viewModel)
             executePendingBindings()
         }
     }

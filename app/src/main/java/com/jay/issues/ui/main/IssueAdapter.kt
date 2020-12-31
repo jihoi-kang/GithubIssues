@@ -8,7 +8,9 @@ import com.jay.issues.model.GithubIssue
 import com.jay.issues.model.ImageItem
 import com.jay.issues.model.ItemViewType
 
-class IssueAdapter : RecyclerView.Adapter<IssueViewHolder>() {
+class IssueAdapter(
+    private val viewModel: MainViewModel
+) : RecyclerView.Adapter<IssueViewHolder>() {
 
     private val items: MutableList<Any> = mutableListOf()
 
@@ -27,7 +29,7 @@ class IssueAdapter : RecyclerView.Adapter<IssueViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IssueViewHolder {
-        return IssueViewHolder(layoutResId = viewType, parent = parent)
+        return IssueViewHolder(viewModel = viewModel, layoutResId = viewType, parent = parent)
     }
 
     override fun onBindViewHolder(holder: IssueViewHolder, position: Int) {

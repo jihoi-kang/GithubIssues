@@ -6,6 +6,7 @@ object Const {
     const val DEFAULT_REPO = "dagger"
 
     const val HELLO_BOT_IMAGE_URL = "https://s3.ap-northeast-2.amazonaws.com/hellobot-kr-test/image/main_logo.png"
+    const val THINGS_FLOW_URL = "https://thingsflow.com/ko/home"
 
     // api
     const val BASE_URL = "https://api.github.com"

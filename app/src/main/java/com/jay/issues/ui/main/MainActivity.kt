@@ -1,5 +1,7 @@
 package com.jay.issues.ui.main
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
@@ -16,7 +18,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(
 ) {
 
     private val issueAdapter: IssueAdapter by lazy {
-        IssueAdapter()
+        IssueAdapter(viewModel)
     }
 
     private val dialog: AlertDialog by lazy {
@@ -66,6 +68,12 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(
                 .setPositiveButton(getString(R.string.text_okay)) { dialog, _ ->
                     dialog.dismiss()
                 }.show()
+        }
+        viewModel.openIssueDetailEvent.observe(this) {
+
+        }
+        viewModel.openWebEvent.observe(this) { url ->
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
         }
     }
 

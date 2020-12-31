@@ -6,12 +6,17 @@
     <data>
 
         <variable
+            name="viewModel"
+            type="com.jay.issues.ui.main.MainViewModel" />
+
+        <variable
             name="item"
             type="com.jay.issues.model.GithubIssue" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:onClick="@{() -> viewModel.openIssueDetail(item.id)}"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/space_large"
         android:paddingTop="@dimen/space_median"

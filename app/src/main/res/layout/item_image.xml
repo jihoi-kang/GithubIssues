@@ -5,6 +5,12 @@
 
     <data>
 
+        <import type="com.jay.issues.Const" />
+
+        <variable
+            name="viewModel"
+            type="com.jay.issues.ui.main.MainViewModel" />
+
         <variable
             name="item"
             type="com.jay.issues.model.ImageItem" />
@@ -12,12 +18,13 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> viewModel.openWeb(Const.THINGS_FLOW_URL)}"
         android:paddingStart="@dimen/space_large"
         android:paddingTop="@dimen/space_median"
         android:paddingEnd="@dimen/space_large"
-        android:paddingBottom="@dimen/space_median"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:paddingBottom="@dimen/space_median">
 
         <ImageView
             android:layout_width="wrap_content"

@@ -42,6 +42,12 @@ class MainViewModel @ViewModelInject constructor(
     private val _errorPopupEvent = MutableLiveData<Int>()
     val errorPopupEvent: LiveData<Int> get() = _errorPopupEvent
 
+    private val _openWebEvent = MutableLiveData<String>()
+    val openWebEvent: LiveData<String> get() = _openWebEvent
+
+    private val _openIssueDetailEvent = MutableLiveData<Int>()
+    val openIssueDetailEvent: LiveData<Int> get() = _openIssueDetailEvent
+
     fun init() {
         viewModelScope.launch {
             getGithubIssues(githubIssueRepository.getLatestRepo() ?: Const.DEFAULT_REPO)
@@ -54,6 +60,14 @@ class MainViewModel @ViewModelInject constructor(
 
     fun openInputPopup() {
         _inputPopupEvent.value = Unit
+    }
+
+    fun openIssueDetail(id: Int) {
+        _openIssueDetailEvent.value = id
+    }
+
+    fun openWeb(url: String) {
+        _openWebEvent.value = url
     }
 
 }
