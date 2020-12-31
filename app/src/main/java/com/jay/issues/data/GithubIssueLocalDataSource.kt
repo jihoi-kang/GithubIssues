@@ -1,3 +1,7 @@
 package com.jay.issues.data
 
-interface GithubIssueLocalDataSource
+interface GithubIssueLocalDataSource {
+
+    fun setLatestRepo(repo: String)
+    fun getLatestRepo(): String?
+}

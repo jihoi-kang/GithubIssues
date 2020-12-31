@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="com.jay.issues.Const" />
+
         <variable
             name="vm"
             type="com.jay.issues.ui.MainViewModel" />
@@ -25,7 +27,7 @@
             android:paddingTop="@dimen/space_median"
             android:paddingEnd="@dimen/space_large"
             android:paddingBottom="@dimen/space_median"
-            android:text="@{vm.repo}"
+            android:text="@{@string/issue_title_fmt(Const.DEFAULT_ORG, vm.repo)}"
             android:textSize="28dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"

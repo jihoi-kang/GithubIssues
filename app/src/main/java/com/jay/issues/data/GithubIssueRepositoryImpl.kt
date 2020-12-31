@@ -13,8 +13,14 @@ class GithubIssueRepositoryImpl @Inject constructor(
     private val githubIssueLocalDataSource: GithubIssueLocalDataSource,
 ) : GithubIssueRepository {
 
-    override suspend fun getGithubIssues(org: String, repo: String): List<GithubIssue> =
-        githubIssueRemoteDataSource.getGithubIssues(org, repo)
+    override suspend fun getGithubIssues(org: String, repo: String): List<GithubIssue> {
+        val items = githubIssueRemoteDataSource.getGithubIssues(org, repo)
+        githubIssueLocalDataSource.setLatestRepo(repo)
+        return items
+    }
+
+    override suspend fun getLatestRepo(): String? =
+        githubIssueLocalDataSource.getLatestRepo()
 
 }
 

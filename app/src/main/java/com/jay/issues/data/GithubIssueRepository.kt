@@ -6,4 +6,6 @@ interface GithubIssueRepository {
 
     suspend fun getGithubIssues(org: String, repo: String): List<GithubIssue>
 
+    suspend fun getLatestRepo(): String?
+
 }

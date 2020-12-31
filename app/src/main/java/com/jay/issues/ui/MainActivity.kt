@@ -41,6 +41,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(
 
         setupUi()
         setupObserve()
+        viewModel.init()
     }
 
     private fun setupUi() {
