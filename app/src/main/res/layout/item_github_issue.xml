@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.jay.issues.model.GithubIssue" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/space_large"
+        android:paddingTop="@dimen/space_median"
+        android:paddingEnd="@dimen/space_large"
+        android:paddingBottom="@dimen/space_median">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{@string/issue_list_fmt(item.number, item.title)}"
+            android:textSize="16dp"
+            android:lineSpacingExtra="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="#1659 Incremental build failures with 2.25.2 (new kotlin qualifier annotations)" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

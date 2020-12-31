@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Github-issues</string>
+    <string name="issue_list_fmt"># %d %s</string>
 </resources>

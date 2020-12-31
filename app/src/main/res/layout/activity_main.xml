@@ -17,13 +17,30 @@
         tools:context=".ui.MainActivity">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_repo"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
+            android:paddingStart="@dimen/space_large"
+            android:paddingTop="@dimen/space_median"
+            android:paddingEnd="@dimen/space_large"
+            android:paddingBottom="@dimen/space_median"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="google / dagger" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_issue_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_repo"
+            tools:listitem="@layout/item_github_issue" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
