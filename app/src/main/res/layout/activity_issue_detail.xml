@@ -18,15 +18,27 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/space_large">
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/design_default_color_primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:title="@{@string/issue_number_fmt(vm.item.number)}"
+                app:titleTextColor="@color/white" />
 
             <ImageView
                 android:id="@+id/iv_avatar"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
+                android:layout_marginStart="@dimen/space_large"
+                android:layout_marginTop="@dimen/space_median"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
                 bind:loadUrl="@{vm.item.user.avatar_url}"
                 tools:src="@mipmap/ic_launcher" />
 
@@ -39,13 +51,15 @@
                 app:layout_constraintBottom_toBottomOf="@+id/iv_avatar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/iv_avatar"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
                 tools:text="jihoi-kang" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/space_large"
                 android:layout_marginTop="@dimen/space_large"
+                android:layout_marginEnd="@dimen/space_large"
                 android:lineSpacingExtra="4dp"
                 android:text="@{vm.item.body}"
                 app:layout_constraintBottom_toBottomOf="parent"
