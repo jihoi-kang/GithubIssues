@@ -25,5 +25,6 @@ data class GithubIssue(
     val title: String,
     val updatedAt: String,
     val url: String,
-    val user: User
-)
+    val user: User,
+    override var itemLayoutResId: Int
+) : ItemViewType

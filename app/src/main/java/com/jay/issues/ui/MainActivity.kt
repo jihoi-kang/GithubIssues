@@ -49,8 +49,9 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(
     }
 
     private fun setupObserve() {
-        viewModel.githubIssues.observe(this) {
-            issueAdapter.setGithubIssues(it)
+        viewModel.githubIssues.observe(this) { items ->
+            items.forEach { it.itemLayoutResId = R.layout.item_github_issue }
+            issueAdapter.setGithubIssues(items)
         }
         viewModel.inputPopupEvent.observe(this) {
             inputEditText.setText("")
