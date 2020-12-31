@@ -1,6 +1,9 @@
 package com.jay.issues.ui
 
 import android.os.Bundle
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
+import com.jay.issues.Const
 import com.jay.issues.R
 import com.jay.issues.base.BaseActivity
 import com.jay.issues.databinding.ActivityMainBinding
@@ -16,12 +19,28 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(
         IssueAdapter()
     }
 
+    private val dialog: AlertDialog by lazy {
+        AlertDialog.Builder(this)
+            .setView(inputEditText)
+            .setPositiveButton(getString(R.string.text_okay)) { dialog, _ ->
+                dialog.dismiss()
+                viewModel.getGithubIssues(inputEditText.text.toString())
+            }.setNegativeButton(getString(R.string.text_cancel)) { dialog, _ ->
+                dialog.dismiss()
+            }.create()
+    }
+
+    private val inputEditText: EditText by lazy {
+        EditText(this).apply {
+            hint = getString(R.string.msg_enter_repository)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setupUi()
         setupObserve()
-        viewModel.getGithubIssues()
     }
 
     private fun setupUi() {
@@ -31,6 +50,20 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(
     private fun setupObserve() {
         viewModel.githubIssues.observe(this) {
             issueAdapter.setGithubIssues(it)
+        }
+        viewModel.inputPopupEvent.observe(this) {
+            inputEditText.setText("")
+            dialog.show()
+        }
+        viewModel.errorPopupEvent.observe(this) { code ->
+            val message =
+                if (code == Const.HTTP_NOT_FOUND) getString(R.string.msg_no_search_results_found)
+                else getString(R.string.msg_unknown_error_occurred)
+            AlertDialog.Builder(this)
+                .setTitle(message)
+                .setPositiveButton(getString(R.string.text_okay)) { dialog, _ ->
+                    dialog.dismiss()
+                }.show()
         }
     }
 
