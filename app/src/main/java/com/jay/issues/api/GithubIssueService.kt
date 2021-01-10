@@ -12,4 +12,11 @@ interface GithubIssueService {
         @Path("repo") repo: String,
     ): List<GithubIssue>
 
+    @GET("/repos/{org}/{repo}/issues/{num}")
+    suspend fun getGithubIssue(
+        @Path("org") org: String,
+        @Path("repo") repo: String,
+        @Path("num") num: Int,
+    ): GithubIssue
+
 }
