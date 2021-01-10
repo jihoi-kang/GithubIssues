@@ -62,8 +62,8 @@ class MainViewModel @ViewModelInject constructor(
         _inputPopupEvent.value = Unit
     }
 
-    fun openIssueDetail(id: Int) {
-        _openIssueDetailEvent.value = id
+    fun openIssueDetail(number: Int) {
+        _openIssueDetailEvent.value = number
     }
 
     fun openWeb(url: String) {

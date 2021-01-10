@@ -14,17 +14,29 @@ class GithubIssueRepositoryImpl @Inject constructor(
 ) : GithubIssueRepository {
 
     override suspend fun getGithubIssues(org: String, repo: String): List<GithubIssue> {
-        val items = githubIssueRemoteDataSource.getGithubIssues(org, repo)
-        githubIssueLocalDataSource.setGithubIssues(items)
-        githubIssueLocalDataSource.setLatestRepo(repo)
+        var items = githubIssueLocalDataSource.getGithubIssuesByRepo(repo)
+
+        if (items.isEmpty()) {
+            items = githubIssueRemoteDataSource.getGithubIssues(org, repo)
+            items.forEach { it.repo = repo }
+            githubIssueLocalDataSource.setGithubIssues(items)
+            githubIssueLocalDataSource.setLatestRepo(repo)
+        }
+
         return items
     }
 
     override suspend fun getLatestRepo(): String? =
         githubIssueLocalDataSource.getLatestRepo()
 
-    override suspend fun getGithubIssue(id: Int): GithubIssue =
-        githubIssueLocalDataSource.getGithubIssue(id)
+    override suspend fun getGithubIssue(org: String, repo: String, number: Int): GithubIssue {
+        return githubIssueLocalDataSource.getGithubIssueByNumber(number) ?: run {
+            val item = githubIssueRemoteDataSource.getGithubIssue(org, repo, number)
+            item.repo = repo
+            githubIssueLocalDataSource.setGithubIssues(listOf(item))
+            item
+        }
+    }
 
 }
 

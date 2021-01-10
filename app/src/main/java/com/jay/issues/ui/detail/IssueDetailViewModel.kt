@@ -16,9 +16,9 @@ class IssueDetailViewModel @ViewModelInject constructor(
     private val _item = MutableLiveData<GithubIssue>()
     val item: LiveData<GithubIssue> get() = _item
 
-    fun getGithubIssue(id: Int) {
+    fun getGithubIssue(org: String, repo: String, number: Int) {
         viewModelScope.launch {
-            val item = githubIssueRepository.getGithubIssue(id)
+            val item = githubIssueRepository.getGithubIssue(org, repo, number)
             _item.value = item
         }
     }

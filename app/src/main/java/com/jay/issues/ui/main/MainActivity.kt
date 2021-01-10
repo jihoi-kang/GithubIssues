@@ -71,7 +71,9 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(
                 }.show()
         }
         viewModel.openIssueDetailEvent.observe(this) { id ->
-            startActivity(IssueDetailActivity.getIntent(this@MainActivity, id))
+            viewModel.repo.value?.let { repo ->
+                startActivity(IssueDetailActivity.getIntent(this@MainActivity, Const.DEFAULT_ORG, repo, id))
+            }
         }
         viewModel.openWebEvent.observe(this) { url ->
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))

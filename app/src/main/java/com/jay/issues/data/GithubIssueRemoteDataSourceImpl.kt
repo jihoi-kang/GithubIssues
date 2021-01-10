@@ -16,6 +16,9 @@ class GithubIssueRemoteDataSourceImpl @Inject constructor(
     override suspend fun getGithubIssues(org: String, repo: String): List<GithubIssue> =
         githubIssueService.getGithubIssues(org, repo)
 
+    override suspend fun getGithubIssue(org: String, repo: String, number: Int): GithubIssue =
+        githubIssueService.getGithubIssue(org, repo, number)
+
 }
 
 @InstallIn(SingletonComponent::class)

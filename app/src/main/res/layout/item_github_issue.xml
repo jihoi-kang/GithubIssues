@@ -16,7 +16,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:onClick="@{() -> viewModel.openIssueDetail(item.id)}"
+        android:onClick="@{() -> viewModel.openIssueDetail(item.number)}"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/space_large"
         android:paddingTop="@dimen/space_median"

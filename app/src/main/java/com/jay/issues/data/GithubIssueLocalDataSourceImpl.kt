@@ -1,7 +1,6 @@
 package com.jay.issues.data
 
 import android.content.SharedPreferences
-import android.util.Log
 import com.jay.issues.Const
 import com.jay.issues.model.GithubIssue
 import com.jay.issues.room.GithubIssueDao
@@ -27,14 +26,14 @@ class GithubIssueLocalDataSourceImpl @Inject constructor(
         sharedPreferences.getString(Const.LATEST_REPO, null)
 
     override fun setGithubIssues(githubIssues: List<GithubIssue>) {
-        githubIssues.forEach { githubIssue ->
-            Log.e("TAG", "passed: ${githubIssue.title}")
-        }
         githubIssueDao.insertGithubIssues(githubIssues)
     }
 
-    override fun getGithubIssue(id: Int): GithubIssue =
-        githubIssueDao.getGithubIssue(id)
+    override fun getGithubIssueByNumber(number: Int): GithubIssue? =
+        githubIssueDao.getGithubIssue(number)
+
+    override fun getGithubIssuesByRepo(repo: String): List<GithubIssue> =
+        githubIssueDao.getGithubIssues(repo) ?: emptyList()
 
 }
 

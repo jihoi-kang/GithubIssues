@@ -39,7 +39,7 @@
                 android:layout_marginTop="@dimen/space_median"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar"
-                bind:loadUrl="@{vm.item.user.avatar_url}"
+                bind:loadUrl="@{vm.item.user.avatar_url ?? ``}"
                 tools:src="@mipmap/ic_launcher" />
 
             <TextView
@@ -57,9 +57,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/space_large"
-                android:layout_marginTop="@dimen/space_large"
-                android:layout_marginEnd="@dimen/space_large"
+                android:layout_margin="@dimen/space_large"
                 android:lineSpacingExtra="4dp"
                 android:text="@{vm.item.body}"
                 app:layout_constraintBottom_toBottomOf="parent"

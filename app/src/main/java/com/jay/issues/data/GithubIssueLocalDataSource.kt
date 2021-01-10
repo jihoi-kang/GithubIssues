@@ -8,6 +8,7 @@ interface GithubIssueLocalDataSource {
     fun getLatestRepo(): String?
 
     fun setGithubIssues(githubIssues: List<GithubIssue>)
-    fun getGithubIssue(id: Int): GithubIssue
+    fun getGithubIssueByNumber(number: Int): GithubIssue?
+    fun getGithubIssuesByRepo(repo: String): List<GithubIssue>
 
 }

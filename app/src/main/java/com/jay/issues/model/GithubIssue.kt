@@ -12,5 +12,6 @@ data class GithubIssue(
     val title: String,
     val body: String,
     val user: User,
+    var repo: String,
     override var itemLayoutResId: Int
 ) : ItemViewType, Parcelable
